@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class CreateAbrahamHistories < ActiveRecord::Migration[5.0]
+class CreateAbrahamHistories < ActiveRecord::Migration
   def change
     create_table :abraham_histories do |t|
       t.string :controller_name

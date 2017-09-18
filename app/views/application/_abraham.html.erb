@@ -38,23 +38,23 @@
     },
     <% end %>
     buttons: [
-    <% if index == 0 %>
+    <% if index == steps.size - 1 %>
+      { text: '<%= t('abraham.done') %>', action: tour.complete }
+    <% elsif index == 0 %>
       { text: '<%= t('abraham.later') %>', action: tour.cancel, classes: 'shepherd-button-secondary' },
       { text: '<%= t('abraham.continue') %>', action: tour.next }
     <% else %>
-        <% if index == steps.size - 1 %>
-      { text: '<%= t('abraham.done') %>', action: tour.complete }
-        <% else %>
       { text: '<%= t('abraham.exit') %>', action: tour.cancel, classes: 'shepherd-button-secondary' },
       { text: '<%= t('abraham.next') %>', action: tour.next }
-        <% end %>
     <% end %>
     ]
   });
   <% end %>
 
   // Don't start the tour if the user dismissed it once this session
-  if (!Cookies.get('abraham-<%= controller_name %>-<%= action_name %>-<%= tour_name %>')) {
-    tour.start();
-  }
+  $(function() {
+    if (!Cookies.get('abraham-<%= controller_name %>-<%= action_name %>-<%= tour_name %>')) {
+      tour.start();
+    }
+  });
 </script>
